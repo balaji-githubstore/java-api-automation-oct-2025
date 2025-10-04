@@ -1,5 +1,6 @@
 package com.expleo.test;
 
+import com.atlassian.oai.validator.restassured.OpenApiValidationFilter;
 import com.expleo.model.Pet;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.restassured.RestAssured;
@@ -77,10 +78,15 @@ public class Demo2GetPetByIdTest {
     @Test
     public void demo4OpenAPISpecVerify()
     {
+        //option 1 - pass yaml file directly
+        OpenApiValidationFilter validationFilter=new OpenApiValidationFilter("src/test/resources/petstore.yaml");
+        //option 2 - pass file object
+        //option 3 - pass url
 
         Pet petObj= RestAssured
                 .given()
-                .pathParam("petId",5)
+                .filter(validationFilter)
+                .pathParam("petId",50)
                 .when().get(baseUrl+"/pet/{petId}")
                 .then().statusCode(200).extract().as(Pet.class);
 

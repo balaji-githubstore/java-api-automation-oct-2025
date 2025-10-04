@@ -15,28 +15,27 @@ paths:
       operationId: getPetById
       tags:
         - pet
-
-    parameters:
-      - name: petId
-        in: path
-        description: Id of the pet to retrieve
-        required: true
-        schema:
-          type: integer
-          format: int64
-    response:
-      '200':
-        description: Pet found
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Pet'
-      '404':
-        description: Pet not found
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PetNotFound'
+      parameters:
+        - name: petId
+          in: path
+          description: Id of the pet to retrieve
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Pet found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+        '404':
+          description: Pet not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PetNotFound'
 
 components:
   schemas:
