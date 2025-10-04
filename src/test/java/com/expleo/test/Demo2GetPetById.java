@@ -1,5 +1,6 @@
 package com.expleo.test;
 
+import com.expleo.model.Category;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
@@ -53,5 +54,13 @@ public class Demo2GetPetById {
         //System.out.println(jsonPathObj.getList("tags[*]"));
     }
 
+    /**
+     * Pojo class - type safety, easy maintenance, stable for automation, schema validation
+     */
+    @Test
+    public void demo3GetPetByIdPojoclass()
+    {
+
+    }
 
 }
