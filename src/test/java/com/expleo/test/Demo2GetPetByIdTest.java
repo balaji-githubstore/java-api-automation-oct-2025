@@ -1,6 +1,5 @@
 package com.expleo.test;
 
-import com.expleo.model.Category;
 import com.expleo.model.Pet;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.restassured.RestAssured;
@@ -11,7 +10,7 @@ import org.testng.annotations.Test;
 /**
  * Deserialization - converting byte stream to proper object
  */
-public class Demo2GetPetById {
+public class Demo2GetPetByIdTest {
     public String baseUrl="https://petstore.swagger.io/v2";
 
     /**
@@ -65,6 +64,21 @@ public class Demo2GetPetById {
     public void demo3GetPetByIdPojoclass()
     {
        Pet petObj= RestAssured
+                .given()
+                .pathParam("petId",5)
+                .when().get(baseUrl+"/pet/{petId}")
+                .then().statusCode(200).extract().as(Pet.class);
+
+        System.out.println(petObj.getId());
+        System.out.println(petObj.getCategory().getId());
+        System.out.println(petObj.getTags().get(0).getId());
+    }
+
+    @Test
+    public void demo4OpenAPISpecVerify()
+    {
+
+        Pet petObj= RestAssured
                 .given()
                 .pathParam("petId",5)
                 .when().get(baseUrl+"/pet/{petId}")

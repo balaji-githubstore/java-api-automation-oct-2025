@@ -8,6 +8,7 @@ servers:
   - url: https://petstore.swagger.io/v2
 
 paths:
+  # Get method - find pet by id
   /pet/{petId}:
     get:
       summary: Find pet By Id
