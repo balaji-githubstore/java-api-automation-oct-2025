@@ -3,7 +3,7 @@ package com.expleo.model;
 import java.util.List;
 
 public class Pet {
-    private int id;
+    private Long id;
     private Category category;
     private String name;
     private List<String> photoUrls;
@@ -51,11 +51,11 @@ public class Pet {
         this.category = category;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

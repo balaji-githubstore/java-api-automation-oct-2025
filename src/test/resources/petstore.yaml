@@ -37,6 +37,28 @@ paths:
               schema:
                 $ref: '#/components/schemas/PetNotFound'
 
+  # Post method - add pet
+  /pet:
+    post:
+      summary: Add New Pet to store
+      operationId: addPetId
+      tags:
+        - pet
+      requestBody:
+        description: Pet Object that needs to be added to store
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pet'
+      responses:
+        '200':
+          description: Pet added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pet'
+
 components:
   schemas:
     Category:

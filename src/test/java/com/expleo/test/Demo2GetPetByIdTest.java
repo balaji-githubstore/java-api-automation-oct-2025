@@ -126,8 +126,11 @@ public class Demo2GetPetByIdTest {
                 "  \"status\": \"available\"\n" +
                 "}";
 
+        OpenApiValidationFilter validationFilter = new OpenApiValidationFilter("src/test/resources/petstore.yaml");
+
         Pet petResponse= RestAssured
                 .given()
+                .filter(validationFilter)
                 .contentType("application/json")
                 .body(jsonBody)
                 .when()
