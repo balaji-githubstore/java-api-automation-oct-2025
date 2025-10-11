@@ -61,18 +61,29 @@ public class Demo3PetStoreOpenAPIModelTest {
     }
 
     @Test
-    public void demo3Git() {
+    public void demo3GitBasic() {
         RestAssured.baseURI="https://api.github.com";
+        //give token here for time being
+        String token="";
 
          RestAssured
                 .given()
-                //.auth().preemptive().basic("","")
-               // .headers("Authorization","brearer ")
-                .auth().basic("dbala-cloud","")
+                 //preemptive() --> use it with auth() for basic auth
+                .auth().preemptive().basic("dbala-cloud",token)
                 .when().get("/user/repos")
                 .then().statusCode(200).log().all();
+    }
 
-
+    @Test
+    public void demo4GitBearer() {
+        RestAssured.baseURI="https://api.github.com";
+        //give token here for time being
+        String token="";
+        RestAssured
+                .given()
+                .headers("Authorization","Bearer "+token)
+                .when().get("/user/repos")
+                .then().statusCode(200).log().all();
     }
 
 }
