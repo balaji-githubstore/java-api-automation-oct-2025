@@ -2,6 +2,8 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+src/test/resources/secret.json
+*.secret.json
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
@@ -30,7 +32,7 @@ target/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
-
+**/secret.json
 ### VS Code ###
 .vscode/
 

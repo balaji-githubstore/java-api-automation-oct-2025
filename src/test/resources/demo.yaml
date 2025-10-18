@@ -1,0 +1,86 @@
+openapi: 3.0.3
+info:
+  title: Github API
+  version: 2.0.0
+  description: APi to manage the repo
+
+
+servers:
+  - url: https://api.github.com
+
+paths:
+  /user/repos:
+    get:
+      summary: List repositiries for authentication users
+      description: Returs respositories of the authenticatied users
+      security:
+        - tokenAuth: [ ]
+      parameters:
+        - name: visibility
+          in: query
+
+          schema:
+            type: string
+            enum:
+              - all
+              - private
+              - public
+      responses:
+        '200':
+          description: List repositiories of authenticated user
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Repository'
+
+        '401':
+          description: unauthorized
+components:
+  securitySchemes:
+    tokenAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: token
+
+  schemas:
+    owner:
+      type: object
+      additionalProperties: true
+      required:
+        - id
+        - login
+      properties:
+        login:
+          type: string
+        id:
+          type: integer
+    Permissions:
+      type: object
+      additionalProperties: true
+      required:
+        - admin
+      properties:
+        admin:
+          type: boolean
+    Repository:
+      type: object
+      additionalProperties: true
+      required:
+        - id
+        - name
+        - private
+      properties:
+        id:
+          type: integer
+        node_id:
+          type: string
+        name:
+          type: string
+        full_name:
+          type: string
+        private:
+          type: boolean
+        owner:
+          $ref: '#/components/schemas/owner'
