@@ -18,7 +18,7 @@ public class Demo4GitAPI {
         String token=jsonPath.get("token");
 
         OpenApiValidationFilter validationFilter
-                =new OpenApiValidationFilter("src/test/resources/gitrepo.yaml");
+                =new OpenApiValidationFilter("src/test/resources/demo.yaml");
 
         RestAssured.baseURI="https://api.github.com";
         RestAssured
@@ -28,4 +28,6 @@ public class Demo4GitAPI {
                 .when().get("/user/repos")
                 .then().statusCode(200).log().all();
     }
+
+
 }
